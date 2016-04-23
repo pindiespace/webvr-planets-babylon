@@ -1,0 +1,29 @@
+doctype html
+
+html
+
+  head
+
+    meta(http-equiv='Content-Type' content='text/html' charset='utf-8')
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='/babylonjs/babylon.js')
+    script(src='/js/planets.js')
+
+  body
+    h1= message
+
+    canvas#renderCanvas(style='border:1px solid black')
+
+    script(type='text/javascript').
+        window.addEventListener('DOMContentLoaded', function(){
+          if(world && world.run) {
+            // If we have a world, add the resizing event listener.
+            window.addEventListener("resize", function () {
+                engine.resize();
+            });
+
+            // start the babylonjs world
+            world.run();
+          }
+        });

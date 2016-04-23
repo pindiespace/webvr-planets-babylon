@@ -1,0 +1,25 @@
+{
+  "name": "boilerplate",
+  "version": "0.1.0",
+  "description": "BabylonJS sample project",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/babylonjs"
+  },
+  "keywords": [
+    "3D",
+    "webGL",
+    "javascript"
+  ],
+  "author": "BabylonJS Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "babylonjs": "^2.3.0",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "serve-favicon": "^2.3.0"
+  }
+}
