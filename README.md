@@ -1,5 +1,3 @@
-Babylon.js
-==========
 
 Getting started? Play directly with the Babylon.js API via our [playground](http://www.babylonjs.com/playground). It contains also lot of simple samples to learn how to use it. 
 
@@ -34,4 +32,8 @@ Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
 
+
+=======
+# webvr-planets-babylon
+babylonjs planet simulation in WebVR
 
