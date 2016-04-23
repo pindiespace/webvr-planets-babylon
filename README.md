@@ -1,6 +1,5 @@
 
-Getting started? Play directly with the Babylon.js API via our [playground](http://www.babylonjs.com/playground). It contains also lot of simple samples to learn how to use it. 
-
+### WebVR solar system model using BabylonJS engine.
 
 ## CDN
 - http://cdn.babylonjs.com/2-2/babylon.js 
