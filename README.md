@@ -1,10 +1,18 @@
 
 ### WebVR solar system model using BabylonJS engine.
 
+## Adapted from tutorial
+- https://stackskills.com/courses/webgl-tutorial/lectures/397789
+
+## image sources
+- http://laps.noaa.gov/albers/sos/sos.html
+- http://www.johnstonsarchive.net/spaceart/cylmaps.html
+
+
 ## CDN
-- http://cdn.babylonjs.com/2-2/babylon.js 
-- http://cdn.babylonjs.com/2-2/babylon.max.js 
-- http://cdn.babylonjs.com/2-2/babylon.noworker.js 
+- http://cdn.babylonjs.com/2-2/babylon.js
+- http://cdn.babylonjs.com/2-2/babylon.max.js
+- http://cdn.babylonjs.com/2-2/babylon.noworker.js
 
 
 ## Documentation
@@ -35,4 +43,3 @@ http://www.apache.org/licenses/
 =======
 # webvr-planets-babylon
 babylonjs planet simulation in WebVR
-

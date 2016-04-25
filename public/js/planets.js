@@ -1,9 +1,9 @@
 
 var world = (function() {
-  var engine, canvas, scene;
+  var engine, canvas, scene, skybox, galacticlight;
   var system = {
-    sun: {mesh:null, name: 'sun', map: 'sun.jpg', diameter: 4, xpos: 0},
-    mercury: {mesh:null, name: 'mercury', map: 'mercury.jpg', diameter: 1, xpos: 4}
+    sun: {mesh:null, name: 'sun', emissive: true,  map: 'sun.jpg', diameter: 4, xpos: 0},
+    mercury: {mesh:null, name: 'mercury', emissive: false, map: 'mercury.jpg', diameter: 1, xpos: 4}
   };
 
   //var sun;
@@ -31,8 +31,14 @@ var world = (function() {
       //var materialPath = 'img/textures/' + 'sand.jpg';
 
       console.log('materialPath:' + materialPath);
-      planetMaterial.diffuseTexture = new BABYLON.Texture(materialPath, scene);
-      planetMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+      if(planetData.emissive) {
+        planetMaterial.emissiveTexture = new BABYLON.Texture(materialPath, scene);
+        planetMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+      } else {
+        planetMaterial.diffuseTexture = new BABYLON.Texture(materialPath, scene);
+      }
+      // Remove specular highlight
+      planetMaterial.specularColor = new BABYLON.Color3(0, 0, 0); //gets rid of highlight
       planetData.mesh.material = planetMaterial;
   };
 
@@ -43,19 +49,32 @@ var world = (function() {
 
     // Create the scene
     scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
     // Have the Camera orbit the sun
     camera = new BABYLON.ArcRotateCamera('camera', 0, 0, 15, BABYLON.Vector3.Zero(), scene);
+    camera.upperRadiusLimit = 100;
     camera.attachControl(canvas);
 
     // Add a light (we may want to make the Sun self-luminous instead)
-    light = new BABYLON.HemisphericLight('galacticlight', new BABYLON.Vector3(0, 1, 0), scene);
+    galacticlight = new BABYLON.HemisphericLight('galacticlight', new BABYLON.Vector3(0, 1, 0), scene);
+    galacticlight.intensity = 0.5;
+    galacticlight.groundColor = new BABYLON.Color3(0.5, 0.5, 1.0);
+
+    // skybox
+    skybox = BABYLON.Mesh.CreateBox('skybox', 1000, scene);
+    skybox.infiniteDistance = true;
+    skyboxMaterial = new BABYLON.StandardMaterial('skyboxmat', scene);
+    skyboxMaterial.backfaceCulling = false;
+    skybox.material = skyboxMaterial;
 
     // Create the sun
     createPlanet(system.sun);
+    var sunLight = new BABYLON.PointLight('sunlight', BABYLON.Vector3.Zero(), scene);
+    sunLight.intensity = 1.5;
 
     // First Planet
-    createPlanet(system.mercury)
+    createPlanet(system.mercury);
 
     return scene;
   };
