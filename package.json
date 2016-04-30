@@ -12,7 +12,7 @@
     "webGL",
     "javascript"
   ],
-  "author": "BabylonJS Team",
+  "author": "Pete Markiewicz",
   "license": "Apache-2.0",
   "dependencies": {
     "babylonjs": "^2.3.0",
