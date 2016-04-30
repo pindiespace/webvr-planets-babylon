@@ -7,6 +7,9 @@
 ## image sources
 - http://laps.noaa.gov/albers/sos/sos.html
 - http://www.johnstonsarchive.net/spaceart/cylmaps.html
+- http://www.solarsystemscope.com/textures/
+- http://paulbourke.net/miscellaneous/starfield/
+
 
 ## Data 
  - http://nineplanets.org
