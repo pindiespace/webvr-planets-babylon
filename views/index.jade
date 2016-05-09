@@ -20,7 +20,7 @@ html
           if(world && world.run) {
             // If we have a world, add the resizing event listener.
             window.addEventListener("resize", function () {
-                engine.resize();
+                world.getEngine().resize();
             });
 
             // start the babylonjs world

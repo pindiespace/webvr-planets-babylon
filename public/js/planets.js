@@ -13,8 +13,18 @@ var world = (function() {
     VR: 'vr'
   };
 
+  /** 
+   * show errors in web console
+   */
   var showError = function (errorMessage) {
     console.error(errorMessage);
+  };
+
+  /** 
+   * Getter for BABYLON engine (used for resizing)
+   */
+  var getEngine = function () {
+    return engine;
   };
 
   /**
@@ -34,6 +44,7 @@ var world = (function() {
       if(planetData.emissive) {
         planetMaterial.emissiveTexture = new BABYLON.Texture(materialPath, scene);
         planetMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        planetMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
       } else {
         planetMaterial.diffuseTexture = new BABYLON.Texture(materialPath, scene);
       }
@@ -56,7 +67,7 @@ var world = (function() {
     camera.upperRadiusLimit = 100;
     camera.attachControl(canvas);
 
-    // Add a light (we may want to make the Sun self-luminous instead)
+    // Add a backlight for Planet 'dark sides'
     galacticlight = new BABYLON.HemisphericLight('galacticlight', new BABYLON.Vector3(0, 1, 0), scene);
     galacticlight.intensity = 0.5;
     galacticlight.groundColor = new BABYLON.Color3(0.5, 0.5, 1.0);
@@ -64,14 +75,21 @@ var world = (function() {
     // skybox
     skybox = BABYLON.Mesh.CreateBox('skybox', 1000, scene);
     skybox.infiniteDistance = true;
-    skyboxMaterial = new BABYLON.StandardMaterial('skyboxmat', scene);
-    skyboxMaterial.backfaceCulling = false;
+
+    // skybox material
+    var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+    skyboxMaterial.backFaceCulling = false;
+    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+    
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture('img/textures/skybox/skybox', scene, ['_px.png', '_py.png', '_pz.png', '_nx.png', '_ny.png', '_nz.png']);
+    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skybox.material = skyboxMaterial;
 
     // Create the sun
     createPlanet(system.sun);
     var sunLight = new BABYLON.PointLight('sunlight', BABYLON.Vector3.Zero(), scene);
-    sunLight.intensity = 1.5;
+    sunLight.intensity = 1.7;
 
     // First Planet
     createPlanet(system.mercury);
@@ -134,12 +152,11 @@ var world = (function() {
   				return;
   			}
 
-        // detect window resize event.
-        /*
-  			if (canvas.width !== canvas.clientWidth) {
-  				engine.resize();
-  			}
-        */
+        // detect window resize event.  
+  			//if (canvas.width !== canvas.clientWidth) {
+  			//	engine.resize();
+  			//}
+        
   			var scene = engine.scenes[0];
 
   			if (scene.activeCamera || scene.activeCameras.length > 0) {
@@ -165,6 +182,7 @@ var world = (function() {
 
   return {
     showError: showError,
+    getEngine: getEngine,
     createScene: createScene,
     run: run
   }

@@ -5,6 +5,7 @@
 - https://stackskills.com/courses/webgl-tutorial/lectures/397789
 
 ## image sources
+- http://home.arcor-online.de/axel.mellinger/licenses.html
 - http://laps.noaa.gov/albers/sos/sos.html
 - http://www.johnstonsarchive.net/spaceart/cylmaps.html
 - http://www.solarsystemscope.com/textures/
