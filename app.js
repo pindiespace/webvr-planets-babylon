@@ -10,6 +10,9 @@ var routes = require('./routes/index');
 // Create the Express server.
 var app = express();
 
+// favicon /public
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
