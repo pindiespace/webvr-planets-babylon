@@ -2,8 +2,58 @@
 var world = (function() {
   var engine, canvas, scene, skybox, galacticlight;
   var system = {
-    sun: {mesh:null, name: 'sun', emissive: true,  map: 'sun.jpg', diameter: 4, xpos: 0},
-    mercury: {mesh:null, name: 'mercury', emissive: false, map: 'mercury.jpg', diameter: 1, xpos: 4}
+    sun: {
+      mesh: null, name: 'sun', emissive: true,  
+      map: 'sun.jpg', diameter: 4, xpos: 0, 
+      rotation: {
+        speed: 0,
+        angle: 0
+      },
+      orbit: {
+        radius: 0,
+        speed: 0,
+        angle: 0
+      }
+    },
+    mercury: {
+      mesh: null, name: 'mercury', emissive: false, 
+      map: 'mercury.jpg', diameter: 1, xpos: 4, 
+      rotation: {
+        speed: 0.4,
+        angle: 1
+      },
+      orbit: {
+        radius: 4,
+        speed: 0.01,
+        angle: 0.1
+      }
+    },
+    venus: {
+      mesh:null, name: 'venus', emmissive: false,
+      map: 'venus.jpg', 'diameter': 1.5, xpos: 7,
+      rotation: {
+        speed: 0.0001,
+        angle: 0.1
+      },
+      orbit: {
+        radius: 7,
+        speed: 0.005,
+        angle: 0.1
+      }
+    },
+    earth: {
+      mesh: null, name: 'earth', emissive: false,
+      map: 'earth.jpg', 'diameter': 1.55, xpos: 10,
+      rotation: {
+        speed: 0.1,
+        angle: 0.1
+      },
+      orbit: {
+        radius: 14,
+        speed: 0.002,
+        angle: 0.1
+      }
+    }
   };
 
   //var sun;
@@ -62,8 +112,8 @@ var world = (function() {
     scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
-    // Have the Camera orbit the sun
-    camera = new BABYLON.ArcRotateCamera('camera', 0, 0, 15, BABYLON.Vector3.Zero(), scene);
+    // Have the Camera orbit the sun (third value moves camera away from center)
+    camera = new BABYLON.ArcRotateCamera('camera', 0, 0, 25, BABYLON.Vector3.Zero(), scene);
     camera.upperRadiusLimit = 100;
     camera.attachControl(canvas);
 
@@ -93,6 +143,11 @@ var world = (function() {
 
     // First Planet
     createPlanet(system.mercury);
+
+    // Second Planet
+    createPlanet(system.venus);
+
+    createPlanet(system.earth);
 
     return scene;
   };
@@ -133,6 +188,18 @@ var world = (function() {
         showError("createScene function must return a scene.");
         return;
       }
+      
+      // define the object update function, before the scene renders
+      engine.scenes[0].beforeRender = function () {
+        for (var i in system) {
+          var planet = system[i];
+          if (planet.orbit.angle != 0) {
+            planet.mesh.position.x = planet.orbit.radius * Math.sin(planet.orbit.angle);
+            planet.mesh.position.z = planet.orbit.radius * Math.cos(planet.orbit.angle);
+            planet.orbit.angle += planet.orbit.speed;
+          }
+        }
+      };
 
       // Confirm scene was added to engine
       if (engine.scenes.length === 0) {
