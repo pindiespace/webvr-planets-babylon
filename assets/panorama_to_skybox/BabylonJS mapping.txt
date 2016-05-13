@@ -1,0 +1,8 @@
+Using environment.blend render file
+
+0001.png -> skybox_nx.png
+0002.png -> skybox_nz.png
+0003.png -> skybox_px.png
+0004.png -> skybox_pz.png
+0005.png -> skybox_ny.png
+0006.png -> skybox_py.png
