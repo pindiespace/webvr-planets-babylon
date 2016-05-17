@@ -1,0 +1,10 @@
+Merge operation:
+
+Galaxy files
+Brightness: -30
+Contrast: +100
+
+Star files
+Brightness:+150
+Contrast:+100
+Opacity:50%

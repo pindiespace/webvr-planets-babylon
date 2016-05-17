@@ -139,7 +139,7 @@ var world = (function() {
     // Create the sun
     createPlanet(system.sun);
     var sunLight = new BABYLON.PointLight('sunlight', BABYLON.Vector3.Zero(), scene);
-    sunLight.intensity = 1.7;
+    sunLight.intensity = 2.2;
 
     // First Planet
     createPlanet(system.mercury);
@@ -147,6 +147,7 @@ var world = (function() {
     // Second Planet
     createPlanet(system.venus);
 
+    // Third Planet
     createPlanet(system.earth);
 
     return scene;
@@ -198,6 +199,8 @@ var world = (function() {
             planet.mesh.position.z = planet.orbit.radius * Math.cos(planet.orbit.angle);
             planet.orbit.angle += planet.orbit.speed;
           }
+           //TODO: individual rotations for each Planet in this range.
+           planet.mesh.rotate(new BABYLON.Vector3(0, 1, 0), 0.01);
         }
       };
 
