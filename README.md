@@ -7,6 +7,8 @@
 ## Description
 This app is an example of how to build a simple model using BabylonJS and WebVR. It is provided as a compliment to the frequent use of the THREE.js engine. BabylonJS uses a different model (pre-built WebVR cameras) and should be easier to implement for beginners.
 
+![WebVR Scene from App](docs/images/webvr-babylon.png)
+
 The current version has a few planets circling the Sun. Later versions will have more planets, along with more correct relative distances between the planets.
 
 ## Use
