@@ -324,7 +324,16 @@ var world = ( function() {
             // create a scene.
 
             //scene = createScene( cameraType.ARCROTATE );
-            scene = createScene( cameraType.WEBVR );
+
+            if ( navigator.getVRDisplays ) {
+
+                scene = createScene( cameraType.WEBVR );
+
+            } else {
+
+                scene = createScene( cameraType.ARCROTATE );
+
+            }
 
             if ( ! scene ) {
 
