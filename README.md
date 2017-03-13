@@ -18,7 +18,7 @@ If WebVR is not present, the app defaults to the BabylonJS ArcRotate camera, whi
 ## Distances used from Sun (in final simulation)
 
 | Planet   	| distance (AU) 	| revolution 	| eccentricity 	| inclination (deg) 	|
-|----------	|---------------	|------------	|--------------	|-------------------	|
+|----------	|---------------	|------------	|--------------	|-------------------	| 
 | Sun      	|             0 	|    24.47 d 	|       -      	|                   	|
 | Mercury  	|         0.387 	|   87.969 d 	|       0.2056 	|             7.005 	|
 | Venus    	|         0.723 	|  224.701 d 	|       0.0068 	|            3.3947 	|
