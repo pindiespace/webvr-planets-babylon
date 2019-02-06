@@ -5,7 +5,7 @@
 - https://stackskills.com/courses/webgl-tutorial/lectures/397789
 
 ## Description
-This app is an example of how to build a simple model using BabylonJS and WebVR. It is provided as a compliment to the frequent use of the THREE.js engine. BabylonJS uses a different model (pre-built WebVR cameras) and should be easier to implement for beginners.
+This app is an example of how to build a simple model using BabylonJS and WebVR. It is provided as a complement to the frequent use of the THREE.js engine. BabylonJS uses a different model (pre-built WebVR cameras) and should be easier to implement for beginners.
 
 ![WebVR Scene from App](docs/images/webvr-babylon.png)
 
